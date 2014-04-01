@@ -19,8 +19,24 @@
     <string name="intro_text">Introduction</string>
     <string name="intro_friendly_text">Friendly</string>
     <string name="intro_specials_text">Specials</string>
-    <string name="intro_opinion_text"></string>
+    <string name="intro_opinion_text">Opinion</string>
 
+    <string name="availability_text">Availability</string>
+    <string name="availability_bad_text">Bad</string>
+    <string name="availability_ok_text">OK</string>
+    <string name="availability_good_text">Good</string>
+
+    <string-array name="problem_solving">
+        <item>Problem Solving</item>
+        <item>Bad</item>
+        <item>OK</item>
+        <item>Good</item>
+    </string-array>
+
+    <string name="time_waiting_text">Time Waiting for Service</string>
+    <string name="start_text">Start</string>
+    <string name="pause_text">Pause</string>
+    <string name="reset_text">Reset</string>
 
 
 
