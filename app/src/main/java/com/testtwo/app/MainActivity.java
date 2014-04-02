@@ -6,8 +6,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Chronometer;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.concurrent.Callable;
 
@@ -27,6 +35,29 @@ public class MainActivity extends ActionBarActivity {
     EditText etBillAmount;
 
     SeekBar seekbarTip;
+
+    private int[] checklistValues = new int[12];
+
+    CheckBox friendlyCheckbox;
+    CheckBox specialCheckbox;
+    CheckBox opinionCheckbox;
+
+    RadioGroup availableRadioGroup;
+    RadioButton availableBadRB;
+    RadioButton availableOKRB;
+    RadioButton availableGoodRB;
+
+    Spinner problemSpinner;
+
+    Button startChronometerButton;
+    Button pauseChronometerButton;
+    Button resetChronometerButton;
+
+    Chronometer timewaitingChronometer;
+
+    long secondsWait = 0;
+
+    TextView timewaitingTextView;
 
 
 
@@ -55,6 +86,30 @@ public class MainActivity extends ActionBarActivity {
         seekbarTip = (SeekBar) findViewById(R.id.seekBarTip);
 
         seekbarTip.setOnSeekBarChangeListener(seekBarTipChangeListener);
+
+        friendlyCheckbox = (CheckBox) findViewById(R.id.checkBoxFriendly);
+        specialCheckbox = (CheckBox) findViewById(R.id.checkBoxSpecial);
+        opinionCheckbox = (CheckBox) findViewById(R.id.checkBoxOpinion);
+
+        availableRadioGroup = (RadioGroup) findViewById(R.id.radioGroupAvailable);
+        availableBadRB = (RadioButton) findViewById(R.id.radioButtonBad);
+        availableOKRB = (RadioButton) findViewById(R.id.radioButtonOK);
+        availableGoodRB = (RadioButton) findViewById(R.id.radioButtonGood);
+
+        //add
+
+
+
+        startChronometerButton = (Button) findViewById(R.id.buttonStart);
+        pauseChronometerButton = (Button) findViewById(R.id.buttonPause);
+        resetChronometerButton = (Button) findViewById(R.id.buttonReset);
+
+        //set button
+
+        timewaitingChronometer = (Chronometer) findViewById(R.id.chronometerTimeWaiting);
+
+        timewaitingTextView = (TextView) findViewById(R.id.textViewTimeWaiting);
+
 
     }
 
@@ -120,6 +175,86 @@ public class MainActivity extends ActionBarActivity {
 
         etBillAmount.setText(String.format("%.02f", finalAmount));
 
+
+    }
+
+
+    private void setUpIntroCheckBoxes(){
+
+        friendlyCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                checklistValues[0] = (friendlyCheckbox.isChecked())?4:0;
+
+                setTipCheckList();
+
+                updateFinalBill();
+
+            }
+        });
+
+
+        specialCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                checklistValues[1] = (specialCheckbox.isChecked()) ? 1 : 0;
+
+                setTipCheckList();
+
+                updateFinalBill();
+
+            }
+
+        });
+
+
+        opinionCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                checklistValues[2] = (opinionCheckbox.isChecked()) ? 2 : 0;
+
+                setTipCheckList();
+
+                updateFinalBill();
+
+            }
+
+        });
+    }
+
+    private void addChangeListenerToRadios(){
+
+        availableRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                checklistValues[3] = (availableBadRB.isChecked())? -1 : 0;
+                checklistValues[4] = (availableOKRB.isChecked())? 2 : 0;
+                checklistValues[5] = (availableGoodRB.isChecked())? 4 : 0;
+
+                setTipCheckList();
+
+                updateFinalBill();
+
+            }
+        });
+
+    }
+
+
+    private void setTipCheckList(){
+        int checkListTotal = 0;
+
+        for(int item : checklistValues){
+
+            checkListTotal += item;
+
+        }
+
+        etTip.setText(String.format("%.02f", checkListTotal * 0.1));
 
     }
 

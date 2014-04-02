@@ -139,13 +139,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/availability_bad_text"
-            android:id="@+id/radioButton" />
+            android:id="@+id/radioButtonBad" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/availability_ok_text"
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonOK"
             android:layout_alignTop="@+id/radioGroupAvailable"
             android:layout_toRightOf="@+id/radioGroupAvailable" />
 
@@ -153,9 +153,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/availability_good_text"
-            android:id="@+id/radioButton3"
-            android:layout_alignTop="@+id/radioButton2"
-            android:layout_toRightOf="@+id/radioButton2" />
+            android:id="@+id/radioButtonGood"
+            android:layout_alignTop="@+id/radioButtonOK"
+            android:layout_toRightOf="@+id/radioButtonOK" />
 
     </RadioGroup>
 
@@ -201,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pause_text"
-        android:id="@+id/button2"
+        android:id="@+id/buttonPause"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/checkBoxSpecial"
         android:layout_alignStart="@+id/checkBoxSpecial" />
@@ -210,7 +210,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reset_text"
-        android:id="@+id/button3"
+        android:id="@+id/buttonReset"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/checkBoxOpinion"
         android:layout_alignStart="@+id/checkBoxOpinion" />
