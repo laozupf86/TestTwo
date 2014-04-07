@@ -6,6 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
@@ -91,14 +93,19 @@ public class MainActivity extends ActionBarActivity {
         specialCheckbox = (CheckBox) findViewById(R.id.checkBoxSpecial);
         opinionCheckbox = (CheckBox) findViewById(R.id.checkBoxOpinion);
 
+
+        setUpIntroCheckBoxes();
+
         availableRadioGroup = (RadioGroup) findViewById(R.id.radioGroupAvailable);
         availableBadRB = (RadioButton) findViewById(R.id.radioButtonBad);
         availableOKRB = (RadioButton) findViewById(R.id.radioButtonOK);
         availableGoodRB = (RadioButton) findViewById(R.id.radioButtonGood);
 
-        //add
+        addChangeListenerToRadios();
 
+        problemSpinner = (Spinner) findViewById(R.id.spinnerProblem);
 
+        addSpinSelectListener();
 
         startChronometerButton = (Button) findViewById(R.id.buttonStart);
         pauseChronometerButton = (Button) findViewById(R.id.buttonPause);
@@ -242,6 +249,30 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+    }
+
+
+    private void addSpinSelectListener(){
+        problemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                checklistValues[6] = (problemSpinner.getSelectedItem().toString().equals("Bad"))?-1:0;
+                checklistValues[7] = (problemSpinner.getSelectedItem().toString().equals("Bad"))?3:0;
+                checklistValues[8] = (problemSpinner.getSelectedItem().toString().equals("Bad"))?6:0;
+
+
+                setTipCheckList();
+
+                updateFinalBill();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 
